@@ -1,0 +1,105 @@
+---
+import { HeaderTitle } from "../consts";
+import { HeaderDescription } from "../consts";
+
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+
+let topTags: Array<{ tag: string, count: number }> = [];
+topTags = [];
+let cntMin = 0;
+let cntMax = 1;
+uniqueTags.forEach((tag) => {
+	const filteredPosts =
+		allPosts.filter((post) => post.data.tags.includes(tag));
+	const cnt = filteredPosts.length;
+
+	if (cntMin == 0) { cntMin = cnt; }
+	else if (cntMin > cnt) { cntMin = cnt }
+	if (cnt > cntMax) { cntMax = cnt; }
+	
+	topTags.push({ tag: tag, count: cnt });
+});
+
+// TODO locale is for builder machine ! how about dynamic sort at runtime ?
+topTags.sort((a, b) => {
+	if (a.count > b.count) return -1;
+	if (a.count < b.count) return 1;
+	return a.tag.localeCompare(b.tag, 'en', { sensitivity: 'base' });
+});
+---
+
+<script>
+	import { RandomLetterFX } from "../scripts/randomLettersFX";
+
+	class fxText extends HTMLElement {
+		constructor() {
+			super();
+			const id = this.dataset.id;
+			const txt = this.dataset.txt;
+			if (id !== undefined && txt !== undefined) {
+				const fx = new RandomLetterFX(id, txt);
+				fx.begin(3);
+			}
+		}
+	}
+	customElements.define('random-letter-fx', fxText);
+</script>
+
+<style>
+section {
+	text-align: center;
+}
+
+.h1a {
+	line-height: 1.2;
+}
+
+.lb {
+	fill: url(#gradz);
+}
+
+.tags-code {
+	color: var(--gradient-stop-2);
+}
+
+@media screen and (min-width: 42rem) {
+	section { text-align: left; }
+}
+</style>
+
+<section class="m2">
+	<div>
+		<p class="h1a">{HeaderTitle}</p>
+		<p class="h4a c-txtd">{HeaderDescription}</p>
+		<nav class="flex-row-nav">
+			<svg viewBox="0 -960 960 960" height="36px">
+				<defs>
+					<linearGradient id="gradz">
+						<stop stop-color="var(--gradient-stop-1)"></stop>
+						<stop offset=".5" stop-color="var(--gradient-stop-2)"></stop>
+						<stop offset="1" stop-color="var(--gradient-stop-3)"></stop> 							
+					</linearGradient>
+				</defs>
+				<path class="lb" d="M320-320h480v-480h-80v280l-100-60-100 60v-280H320v480Zm0 80q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm360-720h200-200Zm-200 0h480-480Z"/>
+			</svg>
+			{topTags.slice(0, 7).map((entry) => (
+				<div>
+				<random-letter-fx data-id={`tt-${entry.tag}`} data-txt={`#${entry.tag}`}>
+					<a href={`/tags/${entry.tag}`} id={`tt-${entry.tag}`} class="mono underline-hov tags-code">
+						{`#${entry.tag}`}
+					</a>
+				</random-letter-fx>
+				</div>
+			))}
+			<div>and&nbsp;
+				<random-letter-fx data-id="tt-toptags" data-txt={topTags.length - 7}>
+					<a href="/tags" id="tt-toptags" class="mono underline-hov tags-code">{topTags.length - 7}</a>
+				</random-letter-fx>
+				&nbsp;more
+			</div>
+		</nav>
+	</div>
+</section>

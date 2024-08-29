@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from '../components/FormattedDate.astro';
+
+const sortedPosts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const max = 10;
+
+let selectedPosts: Array<{ 
+		href: string,
+		title: string,
+		description: string,
+		date: Date,
+	}> = [];
+
+for (let i = 0; i < max; ++i) {
+	let fp = sortedPosts[i];
+	selectedPosts.push({
+			href: '/' + fp.collection + '/' + fp.slug,
+			title: fp.data.title,
+			description: fp.data.description ?? '',
+			date: fp.data.updatedDate ?? fp.data.pubDate
+		});
+
+}
+
+export const recentPosts = [];
+recentPosts.length = 0;
+selectedPosts.forEach(val => recentPosts.push(Object.assign({}, val)));
+---
+
+<style>
+a {
+	position: relative;
+}
+a::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	transform: scaleY(0);
+	transition: transform 1s;
+}
+a:hover::before {
+	transform: scaleY(1);
+}
+</style>
+
+{selectedPosts.map((entry) => (
+	<div class="post-card">
+		<a class="h4a" href={entry.href}>{entry.title}</a>
+		{entry.description.length > 0 &&
+			<p>{entry.description}</p>
+		}
+		<p class="h5a c-txtd"><FormattedDate date={entry.date} /></p>
+	</div>
+))}

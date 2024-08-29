@@ -1,0 +1,88 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import HeaderMain from '../components/HeaderMain.astro';
+import Footer from '../components/Footer.astro';
+
+import { SITE } from '../consts';
+
+import FeaturedPosts from '../components/FeaturedPosts.astro';
+import RecentPosts from '../components/RecentPosts.astro';
+
+import { recentPosts } from '../components/RecentPosts.astro';
+---
+
+<style>
+.mw70 {
+	max-width: 70rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.l0 { fill: url(#gradz); }
+</style>
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE.title} description={SITE.title} />
+	</head>
+	<body>
+		<HeaderNav />
+		<main>
+			<HeaderMain />
+			<section class="m2">
+				<div class="post-card">
+					<p>Some posts are better, interesting or just prettier. From my <a class="h4a p0q underline-hov" href="#main_fp">featured</a> list:</p>
+					<ul>
+						<li><a class="underline-hov" href="/blog/bash_scripting">Bash scripting</a> is how I <b>want</b> to write bash scripts</li>
+						<li>To use GVM (OpenVAS), Metasploit and other tools a <a class="p0q underline-hov" href="/blog/virtual_kali">Virtualized Kali Linux</a> is a good choice</li>
+						<li>I may forget and others have to learn so <a class="p0q underline-hov" href="/blog/metasploit_basics">Metasploit Basics</a> had to be within reach</li>
+					</ul>
+					<p>The three most <a class="h4a p0q underline-hov" href="#main_rp">recent</a> posts are:</p>
+					<ul>
+						{recentPosts.slice(0, 3).map((entry) => (
+							<li><a class="p0q underline-hov" href={entry.href}>{entry.title}</a></li>
+						))}
+					</ul>
+					<p>Digital LEDs (NeoPixel, WS2812, ...), ESP32, STM32, Telegram bot and more are in the <a class="h4a p0q underline-hov" href="projects.html">projects</a> page.
+				</div>
+			</section>
+			<section class="grid-rc mw70">
+				<div id="main_fp">
+					<div class="flex-row p10">
+						<svg viewBox="0 -900 960 960" height="36px">
+							<defs>
+								<linearGradient id="gradz">
+									<stop stop-color="var(--gradient-stop-1)"></stop>
+									<stop offset=".5" stop-color="var(--gradient-stop-2)"></stop>
+									<stop offset="1" stop-color="var(--gradient-stop-3)"></stop> 							
+								</linearGradient>
+							</defs>
+							<path class="l0" d="m354-247 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-80l65-281L80-550l288-25 112-265 112 265 288 25-218 189 65 281-247-149L233-80Zm247-350Z"/>
+						</svg>
+						<span class="h3a c-txt">Featured posts</span>
+					</div>
+					<div><FeaturedPosts /></div>	
+				</div>
+				<div id="main_rp">
+					<div class="flex-row p10">
+						<svg viewBox="0 -900 960 960" height="36px">
+							<defs>
+								<linearGradient id="gradz">
+									<stop stop-color="var(--gradient-stop-1)"></stop>
+									<stop offset=".5" stop-color="var(--gradient-stop-2)"></stop>
+									<stop offset="1" stop-color="var(--gradient-stop-3)"></stop> 							
+								</linearGradient>
+							</defs>
+							<path class="l0" d="M480-120q-138 0-240.5-91.5T122-440h82q14 104 92.5 172T480-200q117 0 198.5-81.5T760-480q0-117-81.5-198.5T480-760q-69 0-129 32t-101 88h110v80H120v-240h80v94q51-64 124.5-99T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-120Zm112-192L440-464v-216h80v184l128 128-56 56Z"/>
+						</svg>
+						<span class="h3a c-txt">Recent posts</span>
+					</div>
+					<div><RecentPosts /></div>	
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,61 @@
+---
+interface Props {
+	href?: string;
+	text?: string;
+};
+
+const {href, text} = Astro.props;
+---
+<style>
+.clickcard {
+	display: flex;
+	align-items: center;
+	margin: 1.5rem 0 0 0;
+	cursor: pointer;
+}
+
+svg {
+	color: var(--c-main);
+	margin: 0 0.5rem;
+}
+
+@keyframes fadeText {
+	from { color: var(--c-txt); }
+	 50% { color: var(--c-back-c2); }
+	  to { color: var(--c-txt); }
+}
+@keyframes fadeImg {
+	from { color: var(--c-main); }
+	 50% { color: var(--c-back-c2); }
+	  to { color: var(--c-main); }
+}
+.shareLinkAnim {
+	animation: 1s fadeText normal;
+}
+.shareLinkAnim svg {
+	animation: 1s fadeImg normal;
+}
+</style>
+
+<script>
+const element = document.getElementById("shareLink");
+
+if (element !== null) {
+	element.addEventListener("click", (ev) => {
+  	ev.preventDefault();
+
+		navigator.clipboard.writeText(window.location.href);
+
+		element.classList.remove("shareLinkAnim");
+		void element.offsetWidth; // triggering reflow /* The actual magic */
+		element.classList.add("shareLinkAnim");
+	}, false);
+}
+</script>
+
+<p id="shareLink" class="clickcard">
+		<svg width="24px" height="24px" viewBox="0 -960 960 960">
+		<path fill="currentColor" stroke="transparent" d="M720-80q-50 0-85-35t-35-85q0-7 1-14.5t3-13.5L322-392q-17 15-38 23.5t-44 8.5q-50 0-85-35t-35-85q0-50 35-85t85-35q23 0 44 8.5t38 23.5l282-164q-2-6-3-13.5t-1-14.5q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-23 0-44-8.5T638-672L356-508q2 6 3 13.5t1 14.5q0 7-1 14.5t-3 13.5l282 164q17-15 38-23.5t44-8.5q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-640q17 0 28.5-11.5T760-760q0-17-11.5-28.5T720-800q-17 0-28.5 11.5T680-760q0 17 11.5 28.5T720-720ZM240-440q17 0 28.5-11.5T280-480q0-17-11.5-28.5T240-520q-17 0-28.5 11.5T200-480q0 17 11.5 28.5T240-440Zm480 280q17 0 28.5-11.5T760-200q0-17-11.5-28.5T720-240q-17 0-28.5 11.5T680-200q0 17 11.5 28.5T720-160Zm0-600ZM240-480Zm480 280Z"/>
+	</svg>
+	Want to share this post? Click to copy the link.
+</p>

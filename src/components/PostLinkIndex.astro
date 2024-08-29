@@ -1,0 +1,58 @@
+---
+import FormattedDate from '../components/FormattedDate.astro';
+
+const { href, title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+let heroImageURL = ''
+if (heroImage !== undefined) {
+    // for images from the 'public/images' folder
+    heroImageURL = '/images';
+    if (!heroImage.startsWith('/')) {
+        heroImageURL += '/';
+    }
+    heroImageURL += heroImage;
+}
+---
+<style>
+.plcardimg {
+	align-self: center;
+}
+.plcardtext {
+	flex: 1 1 0;
+}
+
+.plimg {
+	width: 100%;
+	max-width: 100%;
+}
+
+.pllink {
+	color: var(--c-txt);
+	text-decoration: none;
+	margin-bottom: 1rem;
+	padding: 1rem;
+	width: 100%;
+	min-width: 16rem;
+	max-width: 30rem;
+	background-color: var(--c-back-c1);
+	border-radius: var(--border-radius);
+}
+
+.plcardtext p {
+	margin: 0;
+}
+</style>
+
+<a class="pllink col-row" href={href} >
+	<div class="plcardimg">
+		{(heroImageURL.length > 0) && <img class="plimg" src={heroImageURL} alt="" />}
+	</div>
+	<div class="plcardtext">
+		<p class="c-main h3a">{title}</p>
+		{description && <p>{description}</p>}
+		<p class="h5a c-txtd"><FormattedDate date={pubDate} />
+			{ updatedDate && <Fragment>- updated <FormattedDate date={updatedDate} /></Fragment>}	
+		</p>
+</div>
+</a>
+

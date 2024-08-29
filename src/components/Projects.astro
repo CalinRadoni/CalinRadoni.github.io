@@ -1,0 +1,46 @@
+---
+import { FeaturedProjects } from "../featuredProjects";
+
+let projects: Array<{ 
+		title: string,
+		href: string,
+		description: string,
+	}> = [];
+
+FeaturedProjects.forEach((fp) => {
+	projects.push({
+		title: fp.title,
+		href: fp.href,
+		description: fp.description ?? ''
+	});
+});
+---
+
+<div class="post-card">
+	<a href="https://github.com/CalinRadoni/pax-DLED">
+		<h2 class="c-main">pax-DLED</h2>
+	</a>
+	<p><code>pax-DLED</code> is the board used in <a href="https://github.com/CalinRadoni/pax-LampD1">pax-LampD1</a>,
+	<a href="https://github.com/CalinRadoni/pax-DLEDGrid">pax-DLEDGrid</a> and a few other LED installations with WS2812 LEDs.
+	Currently, all these boards are running the <a href="https://kno.wled.ge/">WLED</a> software.</p>
+</div>
+
+<div class="post-card">
+	<a href="https://github.com/CalinRadoni/pax-DLED">
+		<h2 class="c-main">pax-DLED</h2>
+	</a>
+	<p><code>pax-DLED</code> is the board used in <a href="https://github.com/CalinRadoni/pax-LampD1">pax-LampD1</a>,
+	<a href="https://github.com/CalinRadoni/pax-DLEDGrid">pax-DLEDGrid</a> and a few other LED installations with WS2812 LEDs.
+	Currently, all these boards are running the <a href="https://kno.wled.ge/">WLED</a> software.</p>
+</div>
+
+
+
+{projects.map((entry) => (
+	<div class="post-card">
+		<a href={entry.href}>
+			<h2 class="c-main">{entry.title}</h2>
+		</a>
+		{entry.description.length > 0 && <p>{entry.description}</p>}
+	</div>
+))}

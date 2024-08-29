@@ -1,0 +1,83 @@
+---
+import { getCollection } from "astro:content";
+
+import TagLink from "./TagLink.astro";
+
+const allPosts = await getCollection("blog");
+const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+
+let tags: Array<{ tag: string, count: number }> = [];
+let cntMin = 0;
+let cntMax = 1;
+uniqueTags.forEach((tag) => {
+	const filteredPosts =
+		allPosts.filter((post) => post.data.tags.includes(tag));
+	const cnt = filteredPosts.length;
+
+	if (cntMin == 0) { cntMin = cnt; }
+	else if (cntMin > cnt) { cntMin = cnt }
+	if (cnt > cntMax) { cntMax = cnt; }
+	
+	tags.push({ tag: tag, count: cnt });
+});
+
+// TODO locale is for builder machine ! how about dynamic sort at runtime ?
+tags.sort((a, b) => {
+	return a.tag.localeCompare(b.tag, 'en', { sensitivity: 'base' });
+});
+---
+
+<style>
+.tag-container {
+	line-height: 1.1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	margin: 2rem 1rem 0;
+	padding: 1rem;
+	border-radius: var(--border-radius);
+}
+</style>
+
+<section class="tag-container">
+	{tags.map((entry) => (
+		<TagLink
+			href = {`/tags/${entry.tag}`}
+			text = {entry.tag}
+			cnt = {entry.count}
+			min = {cntMin}
+			max = {cntMax}
+		/>
+	))}
+</section>
+
+<script>
+	var currentHue = 0;
+	
+	function InitializeColor() {
+		const computedStyle = getComputedStyle(document.documentElement);
+		currentHue = parseInt(computedStyle.getPropertyValue('--theme-tag-h1'));
+	}
+	
+	function ChangeColor() {
+		currentHue = (currentHue + 1) % 360;
+		let wh = currentHue;
+		document.documentElement.style.setProperty('--theme-tag-h1', wh.toString());
+		wh = (wh + 60) % 360;
+		document.documentElement.style.setProperty('--theme-tag-h2', wh.toString());
+		wh = (wh + 60) % 360;
+		document.documentElement.style.setProperty('--theme-tag-h3', wh.toString());
+		wh = (wh + 60) % 360;
+		document.documentElement.style.setProperty('--theme-tag-h4', wh.toString());
+		wh = (wh + 60) % 360;
+		document.documentElement.style.setProperty('--theme-tag-h5', wh.toString());
+		wh = (wh + 60) % 360;
+		document.documentElement.style.setProperty('--theme-tag-h6', wh.toString());
+	
+		window.setTimeout(ChangeColor, 10);
+	}
+	
+	InitializeColor();
+	ChangeColor();
+</script>

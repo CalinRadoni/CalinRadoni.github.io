@@ -1,0 +1,37 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	pageTitle: string;
+	pageDescription?: string;
+	headerText?: string;
+	fullWidth?: boolean;
+};
+
+const { pageTitle, pageDescription = '', headerText = '', fullWidth = false } = Astro.props;
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+	<head>
+		<BaseHead title={pageTitle} description={pageDescription} />
+	</head>
+	
+	<body>
+		<HeaderNav />
+		<main>
+			<article class:list={[{full_width: fullWidth}]}>
+				{(headerText.length > 0) &&
+				<header>
+					<p style="font-size: 2rem; color: var(--c-main);">
+						{headerText}
+					</p>
+				</header>
+				}
+				<slot />
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

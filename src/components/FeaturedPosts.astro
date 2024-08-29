@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from '../components/FormattedDate.astro';
+import { FeaturedPostNames } from '../featuredPosts';
+
+const allPosts = await getCollection("blog");
+
+let selectedPosts: Array<{ 
+		href: string,
+		title: string,
+		description: string,
+		date: Date,
+	}> = [];
+
+FeaturedPostNames.forEach((fpn) => {
+	let fp = allPosts.find( o => o.id === fpn);
+	if (fp !== undefined) {
+		selectedPosts.push({
+			href: '/' + fp.collection + '/' + fp.slug,
+			title: fp.data.title,
+			description: fp.data.description ?? '',
+			date: fp.data.updatedDate ?? fp.data.pubDate
+		});
+	}
+});
+
+export const featuredPosts = [];
+featuredPosts.length = 0;
+selectedPosts.forEach(val => featuredPosts.push(Object.assign({}, val)));
+---
+
+{selectedPosts.map((entry) => (
+	<div class="post-card">
+		<a class="h4a" href={entry.href}>{entry.title}</a>
+		{entry.description.length > 0 &&
+			<p>{entry.description}</p>
+		}
+		<p class="h5a c-txtd"><FormattedDate date={entry.date} /></p>
+	</div>
+))}

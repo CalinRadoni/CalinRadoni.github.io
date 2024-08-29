@@ -1,0 +1,79 @@
+---
+interface Props {
+	href: string;
+	text: string;
+	cnt?: number;
+	min?: number;
+	max?: number;
+};
+
+const {href, text, cnt = 0, min = 0, max = 0} = Astro.props;
+
+const vMin = 1;
+const vMax = 3;
+
+let cA = 0;
+let cB = 1;
+
+// y = a * x + b
+if (max > min) {
+	cA = (vMax - vMin) / (max - min);
+	cB = vMax - cA * max;
+}
+const tagFontSize = Math.round((cA * cnt + cB) * 100) / 100;
+
+const styleSize = `font-size: ${tagFontSize}rem;`;
+const txtCnt = cnt === 1 ? "one post" : `${cnt} posts`;
+---
+
+<style>
+a {
+	border-radius: var(--border-radius);
+	color: var(--c-txt);
+	padding: 0.2rem 0.6rem;
+}
+a:nth-child(6n+1) { color: hsl(var(--theme-tag-h1), 70%, var(--theme-tag-l)); }
+a:nth-child(6n+2) { color: hsl(var(--theme-tag-h2), 70%, var(--theme-tag-l)); }
+a:nth-child(6n+3) { color: hsl(var(--theme-tag-h3), 70%, var(--theme-tag-l)); }
+a:nth-child(6n+4) { color: hsl(var(--theme-tag-h4), 70%, var(--theme-tag-l)); }
+a:nth-child(6n+5) { color: hsl(var(--theme-tag-h5), 70%, var(--theme-tag-l)); }
+a:nth-child(6n)   { color: hsl(var(--theme-tag-h6), 70%, var(--theme-tag-l)); }
+a:hover {
+	text-decoration: none;
+	color: var(--c-back);
+	background-color: var(--c-main);
+}
+
+.acnt {
+	color: var(--c-main);
+	margin-left: 0.5rem;
+}
+.tooltip {
+	position: relative;
+	display: inline-block;
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.7s;
+	white-space: nowrap;
+
+	background-color: var(--c-back-c2);
+	color: var(--c-txt);
+	padding: 0.2rem 0.8rem;
+	border-radius: var(--border-radius);
+
+	position: absolute;
+	z-index: 1;
+	left: 50%;
+	bottom: 100%;
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+	opacity: 0.8;
+}
+</style>
+<a href={href} class="tooltip">
+	<span style={styleSize}>{text}</span>
+	<span class="tooltiptext">{txtCnt}</span>
+</a>

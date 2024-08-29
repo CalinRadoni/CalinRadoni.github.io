@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+
+import SimplePage from "../../layouts/SimplePage.astro";
+import PostLinkIndex from '../../components/PostLinkIndex.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<style>
+section {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 0.5rem 1.5rem;
+	padding-top: 1.5rem;
+	justify-content: center;
+}
+</style>
+<SimplePage pageTitle="Posts" fullWidth>
+	<section>
+	{posts.map((post) => (
+		<PostLinkIndex
+			href={`/blog/${post.slug}`}
+			title={post.data.title}
+			pubDate={post.data.pubDate}
+			updatedDate={post.data.updatedDate}
+			description={post.data.description}
+			heroImage={post.data.heroImage}
+		/>
+	))}
+	</section>
+</SimplePage>

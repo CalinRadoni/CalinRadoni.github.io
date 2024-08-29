@@ -1,0 +1,116 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import HeaderMain from '../components/HeaderMain.astro';
+import Footer from '../components/Footer.astro';
+
+import { SITE } from '../consts';
+---
+
+<style>
+section {
+	text-align: center;
+}
+
+.h1a {
+	line-height: 1.2;
+}
+
+@media screen and (min-width: 42rem) {
+	section { text-align: left; }
+}
+
+.mw70 {
+	max-width: 70rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.l0 { fill: url(#gradz); }
+</style>
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE.title} description={SITE.title} />
+	</head>
+	<body>
+		<HeaderNav />
+		<main>
+			<section class="m2">
+				<div>
+					<div class="flex-row p10">
+						<svg viewBox="0 -900 960 960" height="72px">
+							<defs>
+								<linearGradient id="gradz">
+									<stop stop-color="var(--gradient-stop-1)"></stop>
+									<stop offset=".5" stop-color="var(--gradient-stop-2)"></stop>
+									<stop offset="1" stop-color="var(--gradient-stop-3)"></stop> 							
+								</linearGradient>
+							</defs>
+							<path class="l0" d="M240-160q-33 0-56.5-23.5T160-240q0-33 23.5-56.5T240-320q33 0 56.5 23.5T320-240q0 33-23.5 56.5T240-160Zm240 0q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm240 0q-33 0-56.5-23.5T640-240q0-33 23.5-56.5T720-320q33 0 56.5 23.5T800-240q0 33-23.5 56.5T720-160ZM240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400ZM240-640q-33 0-56.5-23.5T160-720q0-33 23.5-56.5T240-800q33 0 56.5 23.5T320-720q0 33-23.5 56.5T240-640Zm240 0q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Zm240 0q-33 0-56.5-23.5T640-720q0-33 23.5-56.5T720-800q33 0 56.5 23.5T800-720q0 33-23.5 56.5T720-640Z"/>
+						</svg>
+						<span class="h1a c-txt">Projects</span>
+					</div>
+					<p class="h4a c-txtd p01">A small selection from the repos published on GitHub</p>
+				</div>
+			</section>
+			<section class="grid-rc mw70">
+				<div>
+					<div class="post-card">
+						<a class="c-main h3a" href="https://github.com/CalinRadoni/pax-DLED">pax-DLED</a>
+						<p><code>pax-DLED</code> is the board used in <a href="https://github.com/CalinRadoni/pax-LampD1">pax-LampD1</a>,
+						<a href="https://github.com/CalinRadoni/pax-DLEDGrid">pax-DLEDGrid</a> and a few other LED installations with WS2812 LEDs.
+						Currently, all these boards are running the <a href="https://kno.wled.ge/">WLED</a> software.</p>
+					</div>
+					<div class="post-card">
+						<a class="c-main h3a" href="https://github.com/CalinRadoni/RobotT1">Telegram bot, RobotT1</a>
+						<p> A Telegram Bot hosted on a <code>ESP32</code> board with <code>esp32-camera</code>, some sensors and OTA updates.</p>
+					</div>
+					<div class="post-card">
+						<a class="c-main h3a" href="https://github.com/CalinRadoni/pax-BB5">pax-BB5</a>
+						<p><code>STM32L051K8T</code> board with <code>RFM69HW</code> and external Flash memory.</p>
+						<p>Usable from <code>PlatformIO</code> with the <code>Arduino</code>, <code>CMSIS</code>, <code>STM32Cube</code> and <code>LibOpenCM3</code> frameworks.</p>
+						<p>A related article is <a href="/blog/platformio_customstm32board/">Custom STM32 board for PlatformIO and Arduino, CMSIS, STM32Cube and LibOpenCM3</a>  </p>
+					</div>
+					<div class="post-card">
+						<a class="c-main h3a" href="https://github.com/CalinRadoni/CreamCSS">CreamCSS </a>
+						<p><code>Lightweight</code>, <code>Classless</code>, <code>HTML Semantic Elements</code>, <code>Responsive</code>, <code>Mobile First</code> CSS framework.</p>
+						<p> Check the 
+							<a class="c-main" href="https://calinradoni.github.io/CreamCSS/">demo and docs</a> pages.</p>
+					</div>
+				</div>
+			</section>
+			<section class="grid-rc mw70">
+				<div id="main_pr">
+					<div class="flex-row p10">
+						<svg viewBox="0 -900 960 960" height="36px">
+							<defs>
+								<linearGradient id="gradz">
+									<stop stop-color="var(--gradient-stop-1)"></stop>
+									<stop offset=".5" stop-color="var(--gradient-stop-2)"></stop>
+									<stop offset="1" stop-color="var(--gradient-stop-3)"></stop> 							
+								</linearGradient>
+							</defs>
+							<path class="l0" d="M240-160q-33 0-56.5-23.5T160-240q0-33 23.5-56.5T240-320q33 0 56.5 23.5T320-240q0 33-23.5 56.5T240-160Zm240 0q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm240 0q-33 0-56.5-23.5T640-240q0-33 23.5-56.5T720-320q33 0 56.5 23.5T800-240q0 33-23.5 56.5T720-160ZM240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400ZM240-640q-33 0-56.5-23.5T160-720q0-33 23.5-56.5T240-800q33 0 56.5 23.5T320-720q0 33-23.5 56.5T240-640Zm240 0q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Zm240 0q-33 0-56.5-23.5T640-720q0-33 23.5-56.5T720-800q33 0 56.5 23.5T800-720q0 33-23.5 56.5T720-640Z"/>
+						</svg>
+						<span class="h3a c-txt">Older projects</span>
+					</div>
+					<div class="post-card">
+						<a class="c-main h3a" href="https://github.com/CalinRadoni/ESP32DLEDController">ESP32DLEDController</a>
+						<p>Controls WS2812-like LEDs using ESP32's RMT peripheral.</p>
+					</div>
+					<div class="post-card">
+						<a class="c-main h3a" href="https://github.com/CalinRadoni/ESP32BoardManager">ESP32BoardManager</a>
+						<p> Basic board manager with WiFi AP / STA mode, HTTP server and firmware OTA update .</p>
+					</div>
+					<div class="post-card">
+						<a class="c-main h3a" href="https://calinradoni.github.io/ESP32HAL">ESP32HAL</a>
+						<p>Helper C++ classes for some ESP32 info (tasks, heap) and generic peripherals (ADC, GPIO, I2C, SPI, Timers, ...).</p>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

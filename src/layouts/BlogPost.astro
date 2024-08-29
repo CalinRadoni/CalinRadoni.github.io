@@ -1,0 +1,126 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntries } from 'astro:content';
+
+import BaseHead from '../components/BaseHead.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import Footer from '../components/Footer.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description = '', pubDate, updatedDate, heroImage, tags, relatedPosts } = Astro.props;
+
+let heroImageURL = ''
+if (heroImage !== undefined) {
+    // for images from the 'public/images' folder
+    heroImageURL = '/images';
+    if (!heroImage.startsWith('/')) {
+        heroImageURL += '/';
+    }
+    heroImageURL += heroImage;
+}
+
+const tagLinks: Array<{ href: string, text: string }> = [];
+tags.forEach((tag) => {
+	tagLinks.push({
+		href: '/tags/' + tag,
+		text: '# ' + tag });
+});
+
+const relatedLinks: Array<{ href: string, text: string }> = [];
+if (relatedPosts !== undefined) {
+	const rPosts = await getEntries(relatedPosts);
+	rPosts.forEach((post) => {
+		relatedLinks.push({
+			href: '/blog/' + post.slug,
+			text: post.data.title });
+	});
+}
+---
+<style>
+article {
+  /* background-image: radial-gradient(circle at 1px 1px, var(--c-outline-dim) 1px, transparent 0); */
+  background-size: 2rem 2rem;
+}
+
+.hero-img {
+	width: 100%;
+	max-width: 100%;
+}
+
+.htext {
+	width: 100%;
+	padding: 1rem 0;
+	line-height: 2;
+	border-bottom: 1px solid var(--c-outline-dim);
+}
+.htext p {
+	margin: 0;
+}
+
+.htitle {
+	font-size: 2.4rem;
+	line-height: 1.2;
+	color: var(--c-main);
+}
+
+.htag {
+	margin: 0 0 0 1.4rem;
+	font-size: 1rem;
+}
+.htag:first-child {
+	margin-left: 0;
+}
+.htag:hover {
+	color: var(--c-txt);
+}
+</style>
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body>
+		<HeaderNav />
+		<main>
+			<article>
+				<header>
+					{heroImage && <img class="hero-img" src={heroImageURL} alt="" />}
+					<div class="htext">
+						<p class="htitle">{title}</p>
+						{description && <p>{description}</p>}
+						<p class="h5a c-txtd">
+							Published on <FormattedDate date={pubDate} />
+							{ updatedDate && <Fragment> updated on <FormattedDate date={updatedDate} /></Fragment>}
+						</p>
+						<nav>
+							{tagLinks.map((entry) => (
+								<a class="htag" href={entry.href}>{entry.text}</a>
+							))}
+						</nav>
+					</div>
+				</header>
+				<section>
+					<slot />
+				</section>
+				<section>
+					<SocialLinks />
+				</section>
+				{relatedLinks.length > 0 &&
+					<section>
+						<p><b>Related posts:</b><br>
+						{relatedLinks.map((entry) => (
+							<a href={entry.href}>{entry.text}</a><br>
+						))}
+						</p>
+					</section>
+				}
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
