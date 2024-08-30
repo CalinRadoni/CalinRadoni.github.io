@@ -1,16 +1,12 @@
 ---
 import { getCollection } from "astro:content";
-import FormattedDate from '../components/FormattedDate.astro';
 import { FeaturedPostNames } from '../featuredPosts';
+import type { PostInfo } from "../types";
+import FormattedDate from '../components/FormattedDate.astro';
 
 const allPosts = await getCollection("blog");
 
-let selectedPosts: Array<{ 
-		href: string,
-		title: string,
-		description: string,
-		date: Date,
-	}> = [];
+let selectedPosts: Array<PostInfo> = [];
 
 FeaturedPostNames.forEach((fpn) => {
 	let fp = allPosts.find( o => o.id === fpn);
@@ -24,9 +20,9 @@ FeaturedPostNames.forEach((fpn) => {
 	}
 });
 
-export const featuredPosts = [];
+export const featuredPosts: Array<PostInfo> = [];
 featuredPosts.length = 0;
-selectedPosts.forEach(val => featuredPosts.push(Object.assign({}, val)));
+selectedPosts.forEach(val => featuredPosts.push(val));
 ---
 
 {selectedPosts.map((entry) => (

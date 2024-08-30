@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import type { PostInfo } from "../types";
 import FormattedDate from '../components/FormattedDate.astro';
 
 const sortedPosts = (await getCollection('blog')).sort(
@@ -8,12 +9,7 @@ const sortedPosts = (await getCollection('blog')).sort(
 
 const max = 10;
 
-let selectedPosts: Array<{ 
-		href: string,
-		title: string,
-		description: string,
-		date: Date,
-	}> = [];
+let selectedPosts: Array<PostInfo> = [];
 
 for (let i = 0; i < max; ++i) {
 	let fp = sortedPosts[i];
@@ -23,12 +19,11 @@ for (let i = 0; i < max; ++i) {
 			description: fp.data.description ?? '',
 			date: fp.data.updatedDate ?? fp.data.pubDate
 		});
-
 }
 
-export const recentPosts = [];
+export const recentPosts: Array<PostInfo> = [];
 recentPosts.length = 0;
-selectedPosts.forEach(val => recentPosts.push(Object.assign({}, val)));
+selectedPosts.forEach(val => recentPosts.push(val));
 ---
 
 <style>
