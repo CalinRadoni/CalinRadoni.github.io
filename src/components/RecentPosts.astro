@@ -20,10 +20,6 @@ for (let i = 0; i < max; ++i) {
 			date: fp.data.updatedDate ?? fp.data.pubDate
 		});
 }
-
-export const recentPosts: Array<PostInfo> = [];
-recentPosts.length = 0;
-selectedPosts.forEach(val => recentPosts.push(val));
 ---
 
 <style>

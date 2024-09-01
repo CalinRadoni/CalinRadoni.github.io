@@ -8,8 +8,7 @@ import { SITE } from '../consts';
 
 import FeaturedPosts from '../components/FeaturedPosts.astro';
 import RecentPosts from '../components/RecentPosts.astro';
-
-import { recentPosts } from '../components/RecentPosts.astro';
+import RecentPostsList from '../components/RecentPostsList.astro';
 ---
 
 <style>
@@ -41,9 +40,7 @@ import { recentPosts } from '../components/RecentPosts.astro';
 					</ul>
 					<p>The three most <a class="h4a p0q underline-hov" href="#main_rp">recent</a> posts are:</p>
 					<ul>
-						{recentPosts.slice(0, 3).map((entry) => (
-							<li><a class="p0q underline-hov" href={entry.href}>{entry.title}</a></li>
-						))}
+						<RecentPostsList classSpec='p0q underline-hov' count={3} />
 					</ul>
 					<p>Digital LEDs (NeoPixel, WS2812, ...), ESP32, STM32, Telegram bot and more are in the <a class="h4a p0q underline-hov" href="projects.html">projects</a> page.
 				</div>

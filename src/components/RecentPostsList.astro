@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import type { PostInfo } from "../types";
+
+interface Props {
+	classSpec: string;
+	count?: number;
+};
+
+const { classSpec, count = 3 } = Astro.props;
+
+const sortedPosts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const max = 10;
+
+let selectedPosts: Array<PostInfo> = [];
+
+for (let i = 0; i < max && i < count; ++i) {
+	let fp = sortedPosts[i];
+	selectedPosts.push({
+			href: '/' + fp.collection + '/' + fp.slug,
+			title: fp.data.title,
+			description: fp.data.description ?? '',
+			date: fp.data.updatedDate ?? fp.data.pubDate
+		});
+}
+---
+
+{selectedPosts.map((entry) => (
+	<li><a class:list={[classSpec]} href={entry.href}>{entry.title}</a></li>
+))}
