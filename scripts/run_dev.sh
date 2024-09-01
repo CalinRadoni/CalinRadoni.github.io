@@ -11,5 +11,5 @@ fi
 
 podman run -it --rm \
   -v "${PWD}":/app:Z -w /app \
-  --network=host -p 127.0.0.1:4321:4321 \
+  -p 127.0.0.1:4321:4321 \
   node:lts /bin/bash -c 'npx astro telemetry disable && npm run dev'
