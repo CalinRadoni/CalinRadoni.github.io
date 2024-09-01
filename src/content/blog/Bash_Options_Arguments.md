@@ -83,7 +83,7 @@ fi
 
 When called with `-a -b bbb ccc ddd` options and arguments string, the previous script will print:
 
-```txt
+```plaintext
 Received flag [-a]
 The argument for [-b] option is bbb
 The are 2 remaining arguments:

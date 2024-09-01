@@ -17,7 +17,7 @@ Go straight to [Final config](#final-config) or read on for details.
 When a USB device is plugged, executing `lsusb` should show it.
 For the ST-LINK interface of a STM32F3 Discovery board:
 
-```txt
+```plaintext
 Bus 001 Device 008: ID 0483:3748 STMicroelectronics ST-LINK/V2
 ```
 

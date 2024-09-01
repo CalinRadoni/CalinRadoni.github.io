@@ -77,7 +77,7 @@ network:
 
 I have used these commands to set a compatible LACP trunk on a Cisco switch:
 
-```cisco_ios
+```shell
 enable
 configure terminal
 
@@ -99,7 +99,7 @@ end
 
 ### Troubleshooting commands for Cisco LACP
 
-```cisco_ios
+```shell
 debug lacp all
 no debug lacp all
 show etherchannel summary

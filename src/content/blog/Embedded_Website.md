@@ -80,7 +80,7 @@ gulp
 
 You should get a response similar to:
 
-```txt
+```plaintext
 [12:34:56] Using gulpfile /tmp/gulptest/gulpfile.js
 [12:34:56] Starting 'default'...
 [12:34:56] Finished 'default' after 1.37 ms
@@ -157,7 +157,7 @@ exports.clean = clean;
 
 Create the `.gitignore` file:
 
-```txt
+```plaintext
 /node_modules/
 /static/
 ```

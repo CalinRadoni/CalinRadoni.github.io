@@ -132,7 +132,7 @@ all:
 
 Example host identity in `~/.ssh/config`:
 
-```txt
+```plaintext
 Host web_server_1
     HostName 192.168.1.11
     User supervisor

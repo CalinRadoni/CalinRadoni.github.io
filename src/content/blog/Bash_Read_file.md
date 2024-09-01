@@ -15,7 +15,7 @@ The code is linted with [ShellCheck](https://www.shellcheck.net/).
 
 For testing let's use `data.conf` file with the following content:
 
-```conf
+```shell
 # This is an example file
 
 key0    value0 # example value 0
@@ -41,7 +41,7 @@ done < "$src_file"
 
 will output:
 
-```txt
+```plaintext
 key0    value0 # example value 0
 key1    value1
 key2    value2
@@ -65,7 +65,7 @@ done < "$src_file"
 
 will output:
 
-```txt
+```plaintext
 key0: value0
 key1: value1
 key2: value2
@@ -93,7 +93,7 @@ done < "$src_file"
 
 will output:
 
-```txt
+```plaintext
 6 elements
 key0.value0.#.example.value.0.
 4 elements

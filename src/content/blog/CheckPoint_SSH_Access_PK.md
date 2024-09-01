@@ -33,7 +33,7 @@ dbclient -m help
 
 On R80.20 SMBs supported ciphers and HMACs are:
 
-```txt
+```plaintext
 Available ciphers: aes128-ctr,aes256-ctr,aes128-cbc,aes256-cbc
 Available MACs: hmac-sha1,hmac-sha2-256,hmac-sha2-512
 ```

@@ -55,14 +55,14 @@ ssh -i ~/ckpSMBAccessKey admin@ip_address_of_SMB_appliance
 
 Log to appliance and change in `/pfrm2.0/etc/sshd_config`:
 
-```conf
+```shell
 #SyslogFacility AUTH
 #LogLevel INFO
 ```
 
 to:
 
-```conf
+```shell
 #SyslogFacility AUTH
 LogLevel DEBUG
 ```

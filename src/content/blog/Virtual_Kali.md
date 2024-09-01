@@ -212,7 +212,7 @@ sudo msfdb init
 
 Launch `msfconsole` and verify database connectivity with `db_status` then `exit` the console.
 
-```txt
+```plaintext
 $ msfconsole -q
 msf6 > db_status
 [*] Connected to msf. Connection type: postgresql.

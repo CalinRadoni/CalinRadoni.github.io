@@ -10,7 +10,7 @@ However, I have used the *old* syntax with ESP-IDF v4.x without problems.
 
 `CMakeLists.txt` for ESP-IDF **stable**:
 
-```conf
+```cmake
 set(COMPONENT_SRCS "foo.c" "bar.c")
 set(COMPONENT_ADD_INCLUDEDIRS ".")
 set(COMPONENT_PRIV_REQUIRES componentA componentB)
@@ -20,7 +20,7 @@ register_component()
 
 `CMakeLists.txt` for ESP-IDF **v4.x**:
 
-```conf
+```cmake
 idf_component_register(
     SRCS "foo.c" "bar.c"
     INCLUDE_DIRS "."

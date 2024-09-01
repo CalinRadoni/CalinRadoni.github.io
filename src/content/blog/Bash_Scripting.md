@@ -150,7 +150,7 @@ exit 0
 
 Running the script with these options and arguments: `-v -v -f aaa bbb ccc` or `-v -v -f aaa -- bbb ccc` will output:
 
-```txt
+```plaintext
 Verbosity level is set to 2
 The input file is aaa
 aaa is not readable !

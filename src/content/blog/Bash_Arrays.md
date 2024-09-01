@@ -69,7 +69,7 @@ display_array_info
 
 The output of the previous script is:
 
-```txt
+```plaintext
 value0 value1 value2
 value0 value1 value2
 0 1 2
@@ -124,7 +124,7 @@ display_array_info
 
 The output of the previous script is:
 
-```txt
+```plaintext
 value2 value0 value1
 value2 value0 value1
 key2 key0 key1

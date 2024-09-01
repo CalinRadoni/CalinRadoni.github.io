@@ -48,7 +48,7 @@ Use `man ssh_config` to read about available options, or check one of many onlin
 
 The following demo `config` file covers some common usage cases:
 
-```conf
+```ssh-config
 # A rule for GitHub
 Host github.com
     HostName github.com

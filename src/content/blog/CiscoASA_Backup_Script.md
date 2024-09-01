@@ -26,7 +26,7 @@ See [Cisco ASA SSH access with Public Key](/blog/ciscoasa_ssh_access_pk) for mor
 
 If you have not done it already, add records for your Cisco ASA devices in `~/.ssh/config`. Here is an example:
 
-```text
+```plaintext
 Host asa1
     HostName 192.168.1.1
 Host asa2

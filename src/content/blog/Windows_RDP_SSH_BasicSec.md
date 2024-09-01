@@ -189,7 +189,7 @@ ssh -Q kex
 
 Edit `%programdata%\ssh\sshd_config` and add these **to the beginning** of the file:
 
-```ssh
+```ssh-config
 Protocol 2
 PubkeyAuthentication yes
 PasswordAuthentication no

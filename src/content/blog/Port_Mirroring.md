@@ -12,7 +12,7 @@ Port mirroring examples:
 
 Mirror the traffic from port 9 to port 2:
 
-```text
+```plaintext
 interface port1.0.2
   mirror interface port1.0.9 direction both
   switchport
@@ -22,7 +22,7 @@ interface port1.0.2
 
 Mirror the traffic from ports 4, 5, 6 and 8 to port 3, member of VLAN 4001
 
-```text
+```plaintext
 interface FastEthernet0/3
   switchport access vlan 4001
   switchport mode access
@@ -35,7 +35,7 @@ monitor session 1 destination interface Fa0/3
 
 Mirror the traffic from port 23 to port 24, member of VLAN 4001
 
-```text
+```plaintext
 interface GigabitEthernet0/0/24
   port link-type access
   port default vlan 4001

@@ -20,7 +20,7 @@ here follows the examples:
 
 For the first Layer 3 switch:
 
-```text
+```plaintext
 interface vlan12
   ip address 192.168.7.2/24
 router vrrp 12 vlan12
@@ -31,7 +31,7 @@ router vrrp 12 vlan12
 
 and for the second Layer 3 switch:
 
-```text
+```plaintext
 interface vlan12
   ip address 192.168.7.3/24
 router vrrp 12 vlan12
@@ -44,7 +44,7 @@ router vrrp 12 vlan12
 
 For the first Layer 3 switch:
 
-```text
+```plaintext
 interface Vlan12
   ip address 192.168.7.2 255.255.255.0
   standby 12 ip 192.168.7.1
@@ -53,7 +53,7 @@ interface Vlan12
 
 and for the second Layer 3 switch:
 
-```text
+```plaintext
 interface Vlan12
   ip address 192.168.7.3 255.255.255.0
   standby 12 ip 192.168.7.1
@@ -64,7 +64,7 @@ interface Vlan12
 
 For the first Layer 3 switch:
 
-```text
+```plaintext
 interface Vlanif12
   ip address 192.168.7.2 255.255.255.0
   vrrp vrid 12 virtual-ip 192.168.7.1
@@ -74,7 +74,7 @@ interface Vlanif12
 
 and for the second Layer 3 switch:
 
-```text
+```plaintext
 interface Vlanif12
   ip address 192.168.7.3 255.255.255.0
   vrrp vrid 12 virtual-ip 192.168.7.1

@@ -21,7 +21,7 @@ cat ~/keys/asaAccessKey.pub | cut -d ' ' -f 2
 
 Here follows the procedure to configure SSH access to ASA using public key authentication.
 
-```text
+```plaintext
 ! create a RSA key and save it
 crypto key generate rsa modulus 2048
 write memory

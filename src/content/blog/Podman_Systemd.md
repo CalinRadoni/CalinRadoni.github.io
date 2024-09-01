@@ -154,7 +154,7 @@ podman stop bbtop && podman rm bbtop && podman rmi busybox
 
 will show that the `top` command inside the busybox container will run as root on the system:
 
-```txt
+```plaintext
 USER      EUID
 root         0
 ```
@@ -162,7 +162,7 @@ root         0
 while running it without sudo from a standard account will show that the `top` command inside
 the busybox container will run as the user that started the container:
 
-```txt
+```plaintext
 USER      EUID
 johndoe    999
 ```

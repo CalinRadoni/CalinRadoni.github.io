@@ -68,7 +68,7 @@ for it to keep its name.
 
 I have a code library with a structure like this:
 
-```txt
+```plaintext
 CodeLibrary
 ├── ESP32
 │   ├── ESP32DLEDController

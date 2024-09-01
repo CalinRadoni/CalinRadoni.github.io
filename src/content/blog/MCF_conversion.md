@@ -14,7 +14,7 @@ Converting `.mcf` files to `.wav` or `.mp3` is not a common task. For me was an 
 
 I have found a reference about the format of the `.mcf` file in the `AudioCapture.h` file from the [Oreka](https://github.com/voiceip/oreka) GitHub repository:
 
-```h
+```cpp
 class DLL_IMPORT_EXPORT_ORKBASE AudioChunkDetails
 {
 public:

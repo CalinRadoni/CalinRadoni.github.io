@@ -67,7 +67,7 @@ sudo openfortivpn -c vpn_config
 
 If the VPN gateway's certificate is not trusted you may get a message like:
 
-```txt
+```plaintext
 ERROR:  Gateway certificate validation failed, and the certificate digest is not in the local whitelist. If you trust it, rerun with:
 ERROR:      --trusted-cert abcd1234567890abcd1234567890abcd1234567890abcd1234567890abcd1234
 ERROR:  or add this line to your config file:

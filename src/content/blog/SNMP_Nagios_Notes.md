@@ -34,7 +34,7 @@ snmpwalk -v3 -l authPriv -u userBuzzzer -a SHA256 -A authBuzzzer -x AES -X passB
 
 Define a command to query a SNMP v2c server using the `commBuzzzer` community name:
 
-```nagios
+```shell
 define command{
     command_name check_snmp_v2
     command_line $USER1$/check_snmp -H $HOSTADDRESS$ -P 2c -C commBuzzzer -o $_SERVICESNMP_OID$ $ARG1$
@@ -43,7 +43,7 @@ define command{
 
 Define a command to query a SNMP v3 server using the username `userBuzzzer` and the `passBuzzzer` password:
 
-```nagios
+```shell
 define command{
     command_name check_snmp_v3
     command_line $USER1$/check_snmp -H $HOSTADDRESS$ -P 3 -L authPriv -U userBuzzzer -A passBuzzzer -X passBuzzzer -o $_SERVICESNMP_OID$ $ARG1$
@@ -52,7 +52,7 @@ define command{
 
 Define a command to query a SNMP v3 server using the `userBuzzzer` username, the `authBuzzzer` authentication password, the `passBuzzzer` encryption password and also specifying the authentication and encryption algorithms:
 
-```nagios
+```shell
 define command{
     command_name check_snmp_v3ap
     command_line $USER1$/check_snmp -H $HOSTADDRESS$ -P 3 -L authPriv -U userBuzzzer -a SHA -A authBuzzzer -x AES -X passBuzzzer -o $_SERVICESNMP_OID$ $ARG1$
@@ -63,7 +63,7 @@ define command{
 
 Check CPU temperature of a Cisco ASA,  `OID = 1.3.6.1.2.1.99.1.1.1.4.8`
 
-```nagios
+```shell
 define service{
     name                check_ASA_CPU_Temp
     use                 generic-service
@@ -76,7 +76,7 @@ define service{
 
 ### Usage of the service template
 
-```nagios
+```shell
 define service{
     use         check_ASA_CPU_Temp
     host_name   ASA23

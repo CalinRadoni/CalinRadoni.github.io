@@ -4,7 +4,7 @@ description: "Workflow to embed the website in firmware - Bash"
 updatedDate: 2020-12-30
 # categories: [ "Web development" ]
 pubDate: 2020-09-13
-tags: [ "npm", "Firmware" ]
+tags: [ "Bash", "npm", "Firmware" ]
 ---
 
 The purpose of this post is to show another method to creates minimized and compressed
@@ -112,7 +112,7 @@ Commands to execute from the `html` directory:
 
 Create the `.gitignore` file:
 
-```conf
+```shell
 # these are installed / updated as needed
 /node_modules/
 
