@@ -5,11 +5,9 @@ if ! command -v podman >/dev/null 2>&1; then
   exit 1
 fi
 
-if ! podman image exists docker.io/library/node:lts; then
-  podman pull docker.io/library/node:lts
-fi
+podman pull docker.io/library/node:lts
 
 podman run -it --rm \
   -v "${PWD}":/app:Z -w /app \
-  --network=host -p 127.0.0.1:4321:4321 \
+  --network=host \
   node:lts npm update
