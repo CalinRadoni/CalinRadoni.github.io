@@ -10,4 +10,4 @@ podman pull docker.io/library/node:lts
 podman run -it --rm \
   -v "${PWD}":/app:Z -w /app \
   --network=host \
-  node:lts npm update
+  node:lts /bin/bash -c 'npx astro telemetry disable && npm update && npx @astrojs/upgrade'
