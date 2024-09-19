@@ -2,12 +2,22 @@
 title: "Get started with Astro using containers"
 description: "Getting started with Astro using a Node container with Podman or Docker"
 pubDate: 2024-09-13
+updatedDate: 2024-09-19
 tags: [ "Astro", "Podman", "Docker", "Node.js" ]
 ---
 
 You do not need to install `Node.js` to use `Astro`. Using `Node.js` from an official container is an easy task.
 
-*These instructions are valid for Podman and Docker. If you use Docker just replace `podman` with `docker`.*
+This post presents the details about initializing an `Astro` project and some scripts to ease the development.
+
+For less explanations and helper scripts check:
+
+- the [README](https://github.com/CalinRadoni/Scripts/blob/main/Astro/README.md) from the repository where I keep the scripts
+- the short description from [Get started with Starlight using containers](/blog/starlight_get_started_container) article
+
+or read on for more details.
+
+*These instructions are valid for `Podman` and `Docker`. If you use Docker just replace `podman` with `docker`.*
 
 ## Initialize the project
 
@@ -40,7 +50,7 @@ then, when running the container, map the `Astro`'s development server to the lo
 
 ## Scripts
 
-I use scripts like the following to develop [https://calinradoni.github.io/](https://calinradoni.github.io/). See those scripts in the [CalinRadoni.github.io](https://github.com/CalinRadoni/CalinRadoni.github.io) repository.
+I use scripts **like** the following to develop [https://calinradoni.github.io/](https://calinradoni.github.io/). The most up to date scripts are in the `Astro` directory from [github.com/CalinRadoni/Scripts](https://github.com/CalinRadoni/Scripts) repository.
 
 ### Run Astro's development server
 
@@ -54,10 +64,6 @@ if ! command -v podman >/dev/null 2>&1; then
   exit 1
 fi
 
-if ! podman image exists docker.io/library/node:lts; then
-  podman pull docker.io/library/node:lts
-fi
-
 podman run -it --rm \
   -v "${PWD}":/app:Z -w /app \
   -p 127.0.0.1:4321:4321 \
@@ -66,16 +72,14 @@ podman run -it --rm \
 
 ### Build the site for deployment
 
+Use this before pushing your site in production to check for build errors.
+
 ```bash
 #!/bin/bash
 
 if ! command -v podman >/dev/null 2>&1; then
   print 'podman is not installed !\n'
   exit 1
-fi
-
-if ! podman image exists docker.io/library/node:lts; then
-  podman pull docker.io/library/node:lts
 fi
 
 podman run -it --rm \
@@ -93,10 +97,6 @@ Starts a server on [http://localhost:4321/](http://localhost:4321/) to serve the
 if ! command -v podman >/dev/null 2>&1; then
   print 'podman is not installed !\n'
   exit 1
-fi
-
-if ! podman image exists docker.io/library/node:lts; then
-  podman pull docker.io/library/node:lts
 fi
 
 podman run -it --rm \
