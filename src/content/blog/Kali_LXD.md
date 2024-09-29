@@ -70,7 +70,8 @@ lxc profile device add KaliDesktop root disk \
 lxc profile device add KaliDesktop eth0 nic \
     name=eth0 network=lxdbr0
 
-lxc profile set KaliDesktop raw.qemu='-device intel-hda -device hda-duplex'
+# if you want audio
+lxc profile set KaliDesktop raw.qemu='-device intel-hda -device hda-duplex -audio spice'
 ```
 
 ## Install Kali Desktop

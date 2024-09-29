@@ -63,7 +63,7 @@ lxc profile device add win11 eth0 nic \
 lxc profile device add win11 vtpm tpm path=/dev/tpm0
 
 # if you want audio
-lxc profile set win11 raw.qemu='-device intel-hda -device hda-duplex'
+lxc profile set win11 raw.qemu='-device intel-hda -device hda-duplex -audio spice'
 ```
 
 ## Install Windows 11

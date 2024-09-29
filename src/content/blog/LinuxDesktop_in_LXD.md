@@ -56,7 +56,7 @@ lxc profile device add LinuxDesktop eth0 nic \
     name=eth0 network=lxdbr0
 
 # if you want audio
-lxc profile set LinuxDesktop raw.qemu='-device intel-hda -device hda-duplex'
+lxc profile set LinuxDesktop raw.qemu='-device intel-hda -device hda-duplex -audio spice'
 ```
 
 ## Launch a new image
