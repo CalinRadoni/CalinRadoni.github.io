@@ -14,7 +14,7 @@ tags: [ "cloud-init", "Cloud Images", "Debian", "Ubuntu", "LXD", "VHDX", "Hyper-
   - [Test with LXC virtual machine](#test-with-lxc-virtual-machine)
   - [Test with LXC container](#test-with-lxc-container)
   - [Test with QEMU](#test-with-qemu)
-- [Create VHDX for Hyper-V](#create-vhdx-for-hyper-v)
+- [Create VHDX image](#create-vhdx-image)
 
 ## Cloud images
 
@@ -56,7 +56,7 @@ chpasswd:
   expire: False
 ```
 
-which set the password for the default `debian` user to `password` when used with a Debian cloud image (*tested with `debian-12-generic-amd64`*).
+which sets the password for the default `debian` user to `password` when used with a Debian cloud image (*tested with `debian-12-generic-amd64`*).
 
 A more useful configuration is in the next script that creates:
 
@@ -129,7 +129,7 @@ At the **first boot**, the cloud images (I tested only Debian 12 and Ubuntu 24) 
 
 ## Test the cloud-init configuration
 
-I use [QEMU](https://www.qemu.org/) and [LXD](https://ubuntu.com/lxd) to test `cloud-init` configurations before deployment. For `LXD` and `QEMU` read on but for more information read [How to run cloud-init locally](https://cloudinit.readthedocs.io/en/stable/howto/run_cloud_init_locally.html)
+I use [QEMU](https://www.qemu.org/) and [LXD](https://ubuntu.com/lxd) to test `cloud-init` configurations before deployment. For `LXD` and `QEMU`, read on, but, for more information, read [How to run cloud-init locally](https://cloudinit.readthedocs.io/en/stable/howto/run_cloud_init_locally.html)
 
 ### Test with LXC virtual machine
 
@@ -214,7 +214,7 @@ This script:
 
 - downloads a compressed `raw` image and the hashes;
 - checks the hash of downloaded file;
-- resize the `raw` image to `32G`;
+- resizes the `raw` image to `32G`;
 - creates a dynamic VHDX image with the block size set to 1M as in [Best Practices for running Linux on Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/best-practices-for-running-linux-on-hyper-v).
 
 ```sh
